@@ -10,8 +10,16 @@ export const options = {
     // Define the duration of the test
     duration: '10s',
     // Define the VUs (Virtual Users) for the test
-    vus: 5
+    vus: 3,
+
+    thresholds: {
+      // Define thresholds for the test
+      http_req_duration: ['p(95)<250'], // 95% of requests should be below 250ms
+      http_req_failed: ['rate<0.5'], // Less than 50% of requests should fail
+    }  
 };
+
+    
 
 // The default exported function is gonna be picked up by k6 as the entry point for the test script. It will be executed repeatedly in "iterations" for the whole duration of the test.
 export default function () {
